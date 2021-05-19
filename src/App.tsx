@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import TodoItem from './components/TodoItem';
+import TodoForm from "./components/TodoForm";
 import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
 
@@ -13,6 +13,7 @@ const App = () => {
     return (
         <div className="App">
             <TodoItemList todos={todos}/>
+            <TodoForm todos={todos}/>
         </div>
     );
 }
