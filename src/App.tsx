@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import TodoItem from './components/TodoItem';
+import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
 
 const App = () => {
@@ -11,8 +12,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <TodoItem todo={todos[0]} />
-            <TodoItem todo={todos[1]} />
+            <TodoItemList todos={todos}/>
         </div>
     );
 }
