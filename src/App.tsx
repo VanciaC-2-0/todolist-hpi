@@ -23,11 +23,26 @@ const App = () => {
 
         setTodos(newTodosState)
     }
+
+    const handleTodoIsComplete = (id: String) =>{
+        const newTodosState: TodoInterface[] = [...todos]
+
+        newTodosState.find((todo: TodoInterface) => todo.id === id)!.isCompleted = !newTodosState.find((todo: TodoInterface) => todo.id === id)!.isCompleted
+        
+        setTodos(newTodosState)
+    }
     
     return (
         <div className="App">
-            <TodoItemList todos={todos} handleTodoDelete={handleTodoDelete}/>
-            <TodoForm todos={todos} handleTodoAdd={handleTodoAdd}/>
+            <TodoItemList 
+                todos={todos} 
+                handleTodoDelete={handleTodoDelete}
+                handleTodoIsComplete={handleTodoIsComplete}    
+            />
+            <TodoForm 
+                todos={todos} 
+                handleTodoAdd={handleTodoAdd}
+            />
         </div>
     );
 }
