@@ -1,17 +1,11 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import TodoForm from "./components/TodoForm";
 import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
 
 const App = () => {
-
-    const [todos, setTodos] = useState<TodoInterface[]>([
-        {"id":"1","createdAt":"2021-05-11T05:39:22.142Z","description":"Slovenia value-added standardization","isCompleted":true},
-        {"id":"2","createdAt":"2021-05-11T04:21:55.747Z","description":"Savings Account","isCompleted":false},
-        {"id":"3","createdAt":"2021-05-10T12:39:52.735Z","description":"Avon FTP","isCompleted":true},
-        {"id":"4","createdAt":"2021-05-10T15:54:28.208Z","description":"Towels Rubber Cotton","isCompleted":false},
-        {"id":"5","createdAt":"2021-05-10T22:30:24.378Z","description":"action-items firewall","isCompleted":false}
-    ])
+    //State of [todos]
+    const [todos, setTodos] = useState<TodoInterface[]>([])
     //Order by createdAt
     // ToLowerCase is to make it sure
     todos.sort(function(a, b){
@@ -23,7 +17,17 @@ const App = () => {
         }
         return 0;
     })
+
+    //Collect data from API and put in state
+    useEffect(() => {
+        fetch("https://609a4b280f5a13001721a85b.mockapi.io/tasks")
+            .then(res => res.json())
+            .then(
+                todos => setTodos(todos)
+            )
+    }, [])
     
+    //Add todo
     const handleTodoAdd = (todo: TodoInterface) =>{
         const newTodosState: TodoInterface[] = [...todos]
         
@@ -32,23 +36,26 @@ const App = () => {
         setTodos(newTodosState)
     }
 
+    //Delete one todo
     const handleTodoDelete = (id: String) =>{
         const newTodosState: TodoInterface[] = todos.filter((todo: TodoInterface) => todo.id !== id)
 
         setTodos(newTodosState)
     }
 
+        //Delete all completed todo
+        const handleTodoDeleteAll = (todos: TodoInterface[]) => {
+            const newTodosState = todos.filter(todos => !todos.isCompleted)
+    
+            setTodos(newTodosState)
+        }
+    
+    //Completed/notcompleted todo
     const handleTodoIsComplete = (id: String) =>{
         const newTodosState: TodoInterface[] = [...todos]
 
         newTodosState.find((todo: TodoInterface) => todo.id === id)!.isCompleted = !newTodosState.find((todo: TodoInterface) => todo.id === id)!.isCompleted
 
-        setTodos(newTodosState)
-    }
-
-    const handleTodoDeleteAll = (todos: TodoInterface[]) => {
-        const newTodosState = todos.filter(todos => !todos.isCompleted)
-        
         setTodos(newTodosState)
     }
 
