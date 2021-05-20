@@ -16,10 +16,10 @@ const App = () => {
     // ToLowerCase is to make it sure
     todos.sort(function(a, b){
         if (a.createdAt.toLowerCase() < b.createdAt.toLowerCase()){
-            return -1;
+            return 1;
         }
         if (a.createdAt.toLowerCase() > b.createdAt.toLowerCase()){
-            return 1;
+            return -1;
         }
         return 0;
     })
@@ -45,6 +45,13 @@ const App = () => {
 
         setTodos(newTodosState)
     }
+
+    const handleTodoDeleteAll = (todos: TodoInterface[]) => {
+        const newTodosState = todos.filter(todos => !todos.isCompleted)
+        
+        setTodos(newTodosState)
+    }
+
     return (
         <div className="App">
             <TodoForm 
@@ -54,7 +61,8 @@ const App = () => {
             <TodoItemList 
                 todos={todos}
                 handleTodoDelete={handleTodoDelete}
-                handleTodoIsComplete={handleTodoIsComplete}    
+                handleTodoIsComplete={handleTodoIsComplete}
+                handleTodoDeleteAll={handleTodoDeleteAll}    
             />
         </div>
     );
