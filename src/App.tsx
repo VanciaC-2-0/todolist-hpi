@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState} from "react";
+import {ToastProvider, useToasts} from 'react-toast-notifications'
 import TodoForm from "./components/TodoForm";
 import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
 
 const App = () => {
     //Endpoint URL
-    const ENDPOINT = "https://609a4b280f5a13001721a85b.mockapi.io/tasks/" 
+    const ENDPOINT = "https://609a4b280f5a13001721a85b.mockapi.io/tasks/"
+    //Add toast with de dependency
+    const {addToast} = useToasts();
 
     //State of [todos]
     const [todos, setTodos] = useState<TodoInterface[]>([])
@@ -25,7 +28,7 @@ const App = () => {
     //Collect data from API and put in state
     useEffect(() => {
         axios.get(ENDPOINT)
-            .then(todos => setTodos(todos.data))
+        .then(todos => setTodos(todos.data))
     }, [])
     
     //Add todo
@@ -41,6 +44,12 @@ const App = () => {
         newTodosState.push(todo)
         
         setTodos(newTodosState)
+
+        addToast('"'+ todo.description + '" was added !', { 
+            appearance: 'success',
+            autoDismiss: true,
+            autoDismissTimeout: 3000
+        });
     }
 
     //Delete one todo
@@ -49,14 +58,24 @@ const App = () => {
         const newTodosState: TodoInterface[] = todos.filter((todo: TodoInterface) => todo.id !== id)
 
         setTodos(newTodosState)
+        addToast('Todo was deleted !', { 
+            appearance: 'error',
+            autoDismiss: true,
+            autoDismissTimeout: 3000
+        });
     }
 
-        //Delete all completed todo
-        const handleTodoDeleteAll = (todos: TodoInterface[]) => {
-            const newTodosState = todos.filter(todos => !todos.isCompleted)
-    
-            setTodos(newTodosState)
-        }
+    //Delete all completed todo
+    const handleTodoDeleteAll = (todos: TodoInterface[]) => {
+        const newTodosState = todos.filter(todos => !todos.isCompleted)
+
+        setTodos(newTodosState)
+        addToast('All completed todo was added !', { 
+            appearance: 'error',
+            autoDismiss: true,
+            autoDismissTimeout: 3000
+        });
+    }
     
     //Completed/notcompleted todo
     const handleTodoIsComplete = (id: String, todo: TodoInterface) =>{
@@ -69,6 +88,20 @@ const App = () => {
         newTodosState.find(todo => todo.id === id)!.isCompleted = !newTodosState.find((todo: TodoInterface) => todo.id === id)!.isCompleted
 
         setTodos(newTodosState)
+        if (todo.isCompleted === true){
+            addToast('"'+ todo.description + '" was completed !', { 
+                appearance: 'warning',
+                autoDismiss: true,
+                autoDismissTimeout: 3000
+            });
+        }
+        else{
+            addToast('"'+ todo.description + '" was not completed !', { 
+                appearance: 'warning',
+                autoDismiss: true,
+                autoDismissTimeout: 3000
+            });
+        }
     }
 
     return (
