@@ -5,8 +5,9 @@ import Menu from "./components/Menu";
 import TodoForm from "./components/TodoForm";
 import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
-import { Route, NavLink, HashRouter } from "react-router-dom";
+import { Route, HashRouter } from "react-router-dom";
 import Settings from "./components/Settings";
+import "./styles/app.css"
 
 const App = () => {
     //Endpoint URL
@@ -27,6 +28,8 @@ const App = () => {
         }
         return 0;
     })
+    //State of theme
+    const [theme, setTheme] = useState("dark");
 
     //Collect data from API and put in state
     useEffect(() => {
@@ -107,34 +110,46 @@ const App = () => {
         }
     }
 
+    const handleTheme = () =>{
+        theme === 'hpi' ? setTheme('dark') : setTheme('hpi')
+        console.log(theme)
+    }
+
     return (
         <div className="App">
-            <HashRouter>
-                <Menu/>
-                <TodoForm 
-                    todos={todos} 
-                    handleTodoAdd={handleTodoAdd}
-                />
-                <Route path="/todos" component={() =>
-                    <TodoItemList 
-                        todos={todos}
-                        handleTodoDelete={handleTodoDelete}
-                        handleTodoIsComplete={handleTodoIsComplete}
-                        handleTodoDeleteAll={handleTodoDeleteAll}
-                        isChecked={false}   
-                    />}
-                />
-                <Route path="/completed" component={() =>
-                    <TodoItemList 
-                        todos={todos}
-                        handleTodoDelete={handleTodoDelete}
-                        handleTodoIsComplete={handleTodoIsComplete}
-                        handleTodoDeleteAll={handleTodoDeleteAll}
-                        isChecked={true}   
-                    />}
-                />
-                <Route path="/settings" component={ () => <Settings />}/>
-            </HashRouter>
+            <div className={theme !== "dark" ? "dark-mode" : "hpi-mode"}>
+                <HashRouter>
+                    <Menu/>
+                    <TodoForm 
+                        todos={todos} 
+                        handleTodoAdd={handleTodoAdd}
+                    />
+                    <Route path="/todos" component={() =>
+                        <TodoItemList 
+                            todos={todos}
+                            handleTodoDelete={handleTodoDelete}
+                            handleTodoIsComplete={handleTodoIsComplete}
+                            handleTodoDeleteAll={handleTodoDeleteAll}
+                            isChecked={false}   
+                        />}
+                    />
+                    <Route path="/completed" component={() =>
+                        <TodoItemList 
+                            todos={todos}
+                            handleTodoDelete={handleTodoDelete}
+                            handleTodoIsComplete={handleTodoIsComplete}
+                            handleTodoDeleteAll={handleTodoDeleteAll}
+                            isChecked={true}   
+                        />}
+                    />
+                    <Route path="/settings" component={ () => 
+                        <Settings
+                            theme={theme}
+                            handleTheme={handleTheme}
+                        />
+                    }/>
+                </HashRouter>
+            </div>
         </div>
     );
 }
