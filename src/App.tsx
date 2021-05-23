@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState} from "react";
-import {ToastProvider, useToasts} from 'react-toast-notifications'
+import React, { useEffect, useState } from "react";
+import { useToasts } from 'react-toast-notifications'
+import Menu from "./components/Menu";
 import TodoForm from "./components/TodoForm";
 import TodoItemList from "./components/TodoItemList";
 import { TodoInterface } from "./interface/TodoInterface";
+import { Route, NavLink, HashRouter } from "react-router-dom";
+import Settings from "./components/Settings";
 
 const App = () => {
     //Endpoint URL
@@ -106,16 +109,32 @@ const App = () => {
 
     return (
         <div className="App">
-            <TodoForm 
-                todos={todos} 
-                handleTodoAdd={handleTodoAdd}
-            />
-            <TodoItemList 
-                todos={todos}
-                handleTodoDelete={handleTodoDelete}
-                handleTodoIsComplete={handleTodoIsComplete}
-                handleTodoDeleteAll={handleTodoDeleteAll}    
-            />
+            <HashRouter>
+                <Menu/>
+                <TodoForm 
+                    todos={todos} 
+                    handleTodoAdd={handleTodoAdd}
+                />
+                <Route path="/todos" component={() =>
+                    <TodoItemList 
+                        todos={todos}
+                        handleTodoDelete={handleTodoDelete}
+                        handleTodoIsComplete={handleTodoIsComplete}
+                        handleTodoDeleteAll={handleTodoDeleteAll}
+                        isChecked={false}   
+                    />}
+                />
+                <Route path="/completed" component={() =>
+                    <TodoItemList 
+                        todos={todos}
+                        handleTodoDelete={handleTodoDelete}
+                        handleTodoIsComplete={handleTodoIsComplete}
+                        handleTodoDeleteAll={handleTodoDeleteAll}
+                        isChecked={true}   
+                    />}
+                />
+                <Route path="/settings" component={ () => <Settings />}/>
+            </HashRouter>
         </div>
     );
 }
