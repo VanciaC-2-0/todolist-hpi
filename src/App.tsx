@@ -109,7 +109,7 @@ const App = () => {
             });
         }
     }
-
+    //change mode theme
     const handleTheme = () =>{
         theme === 'hpi' ? setTheme('dark') : setTheme('hpi')
         console.log(theme)
@@ -118,6 +118,7 @@ const App = () => {
     return (
         <div className="App">
             <div className={theme !== "dark" ? "dark-mode" : "hpi-mode"}>
+                <h1>My Todo List App</h1>
                 <HashRouter>
                     <Menu/>
                     <TodoForm 
