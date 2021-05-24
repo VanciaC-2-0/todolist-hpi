@@ -60,7 +60,7 @@ Each action is saved on the API, so, if you refresh the application, the saved s
 - Error handling
 - Any others suggestions .. ?
 
-# Libraries used
+## Libraries used
 
 - shortid = to create a random ID for todo which is not a number.
 - react-toast-notification = use for the toaster. Time saving and very easy to use. The documentation is good as well.
@@ -118,7 +118,7 @@ Chaque action est enregistrée sur l'API, donc, si vous actualisez l'application
 - La gestion des erreurs
 - D'autres suggestions ..?
 
-# Bibliothèques utilisées
+## Bibliothèques utilisées
 
 - shortid = pour créer un ID aléatoire pour une tâche qui n'est pas un nombre.
 - react-toast-notification = utilisation pour le pop-up. Gain de temps et utilisation très simple. La documentation est également bien réalisée.
