@@ -1,0 +1,125 @@
+li{
+    list-style: none;
+}
+
+.todo-item, .todo-item-input{
+    display: flex;
+    font-family: 'Indie Flower';
+    font-size: 22px;
+}
+.todo-item-input{
+    margin: 20px 0;
+    width: 100%;
+    min-height: 50px;
+    color: #0B2C2C;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+.hpi-mode .unchecked-item .todo-item-input{
+    border-bottom: 3px dashed #0C6EEC;
+}
+
+.todo-item-description{
+    width: 80%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.checked-item .todo-item-description{
+    background: #0C6EEC;
+    color: #fff;
+    border: 3px dashed #FACF36;
+    box-shadow: 3px 3px 1px #262626;
+    border-radius: 15px 5px 15px 5px;
+}
+.dark-mode .unchecked-item .todo-item-description{
+    background: #262626;
+    color: #fff;
+    border: 3px dashed #fff;
+    box-shadow: 3px 3px 1px #ccc;
+    border-radius: 15px 5px 15px 5px;
+}
+.dark-mode .checked-item .todo-item-description{
+    background: #fff;
+    color: #262626;
+    border: 3px dashed #262626;
+    box-shadow: 3px 3px 1px #ccc;
+    border-radius: 15px 5px 15px 5px;
+}
+
+.todo-item-check, .todo-item-remove{
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    background: #fff;
+    color: #0C6EEC;
+    font-size: 17px;
+    border-radius: 15px 5px 15px 5px;
+    margin: 20px;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+    max-height: 40px;
+}
+.todo-item-check{
+    background-color: #0C6EEC;
+    border: 3px dashed #FACF36;
+    color:#fff;
+    box-shadow: 3px 3px 1px #262626;
+}
+.dark-mode .todo-item-check{
+    background-color: #262626;
+    border: 3px dashed #fff;
+    color:#fff;
+    box-shadow: 3px 3px 1px #ccc;
+}
+.checked-item .todo-item-check{
+    background-color: #FACF36;
+    border: 3px dashed #0C6EEC;
+    color:#262626;
+    box-shadow: 3px 3px 1px #262626;
+}
+.dark-mode .checked-item .todo-item-check{
+    background-color: #262626;
+    border: 3px dashed #fff;
+    color:#fff;
+    box-shadow: 3px 3px 1px #ccc;
+}
+.todo-item-remove{
+    font-size: 20px;
+    background-color: #AE4242;
+    border: 3px dashed #FACF36;
+    color:#fff;
+    box-shadow: 3px 3px 1px #262626;
+}
+.dark-mode .todo-item-remove{
+    background-color: #fff;
+    border: 3px dashed #262626;
+    color:#262626;
+    box-shadow: 3px 3px 1px #ccc;
+}
+.todo-item-check:hover, .todo-item-remove:hover{
+    transform: scale(1.05);
+}
+.todo-item-input:hover{
+    transform: scale(1.01);
+}
+.todo-item-check{
+    width: 17%;
+}
+
+.todo-item button{
+    padding: 10px;
+}
+
+@media screen and (max-width: 640px) {
+    .todo-item-description{
+        width: 80%;
+        padding: 10px;
+        word-wrap: break-word;
+    }
+}

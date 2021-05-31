@@ -1,0 +1,48 @@
+.menu-component{
+    width: 70%;
+    margin: auto;
+}
+.menu-todo-list{
+    display: flex;
+    justify-content: center;
+}
+.menu-todo-list li{
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+    font-size: 30px;
+    font-family: "Amatic SC";
+    text-transform: uppercase;
+    border-radius: 15px 5px 15px 5px;
+    transition-timing-function: ease;
+    transition-duration: 1s;
+}
+
+.hpi-mode .menu-todo-list li{
+    border: 3px dashed #FACF36;
+    box-shadow: 3px 3px 1px #0C6EEC;
+}
+
+.dark-mode .menu-todo-list li{
+    border: 3px dashed #fff;
+    box-shadow: 3px 3px 1px #ccc;
+}
+
+.menu-todo-list li:hover{
+    transform: translateY(-7px);
+}
+
+@media screen and (max-width: 640px) {
+    .menu-component{
+        padding: 0px;
+    }
+    .menu-todo-list {
+        flex-direction: column;
+    }
+    .menu-todo-list li{
+        font-size: 25px;
+    }
+    .menu-todo-list li{
+        padding: 5px;
+    }
+}

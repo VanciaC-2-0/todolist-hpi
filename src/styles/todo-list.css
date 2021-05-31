@@ -1,0 +1,47 @@
+.todo-list-component{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 30px;
+    width: 70%;
+}
+.todo-list-component button{
+    display: block;
+    cursor: pointer;
+    font-family: "Amatic SC";
+    font-size: 30px;
+    padding: 0 20px;
+    background-color: #fff;
+    letter-spacing: 2px;
+    transition: 0.2s all ease-in-out;
+    outline: none;
+    border-radius: 15px 5px 15px 5px;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+    margin: 10px auto;
+    width: 400px;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.todo-list-component button:hover{
+    transform: scale(1.05);
+}
+.hpi-mode .todo-list-component button {
+    border: 3px dashed #FACF36;
+    box-shadow: 3px 3px 1px #0C6EEC;
+}
+
+.dark-mode .todo-list-component button {
+    border: 3px dashed #ccc;
+    box-shadow: 3px 3px 1px #fff;
+}
+
+
+@media screen and (max-width: 640px) {
+    .todo-list-component button{
+        font-size: 25px;
+        width: 300px;
+        margin: auto;
+    }
+}

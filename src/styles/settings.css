@@ -1,0 +1,62 @@
+.settings-mode{
+    display: flex;
+    justify-content: center;
+}
+.settings-input{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Indie Flower";
+    font-size: 35px;
+    padding: 0 20px;
+    transition: 0.2s all ease-in-out;
+    outline: none;
+    border-radius: 15px 5px 15px 5px;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+    margin: 10px auto;
+    padding: 50px;
+    width: 500px;
+    text-align: center;
+    transition-timing-function: ease;
+    transition-duration: 1s;
+}
+.dark-settings{
+    background: #262626;
+    color: #fff;
+    border: 3px dashed #fff;
+    box-shadow: 3px 3px 1px #262626;
+}
+.hpi-settings{
+    background: #0C6EEC;
+    color: #fff;
+    border: 3px dashed #FACF36;
+    box-shadow: 3px 3px 1px #FACF36;
+}
+.hpi-settings i{
+    font-size: 45px;
+    margin-right: 50px;
+}
+.dark-settings i{
+    font-size: 45px;
+    margin-right: 50px;
+}
+
+.settings-input:hover{
+    transform: scale(1.05);
+    
+}
+.dark-settings:hover{
+    text-decoration-line: line-through;
+    box-shadow: 3px 3px 30px #262626;
+}
+.hpi-settings:hover{
+    box-shadow: 3px 3px 30px #FACF36;
+}
+
+@media screen and (max-width: 640px) {
+    .settings-input{
+        width: 80%;
+        padding: 10px;
+    }
+}
